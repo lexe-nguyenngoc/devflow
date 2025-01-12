@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { SheetClose } from "@/components/ui/sheet";
 
 interface NavLinkProps {
-  isMobileNav: boolean;
+  isMobileNav?: boolean;
 }
 
 const NavLinks = ({ isMobileNav = false }: NavLinkProps) => {
@@ -25,8 +25,9 @@ const NavLinks = ({ isMobileNav = false }: NavLinkProps) => {
           pathname === item.route;
 
         if (item.route === "/profile") {
-          if (userId) item.route = `${item.route}/${userId}`;
-          else return null;
+          if (!userId) return null;
+
+          item.route = `${item.route}/${userId}`;
         }
 
         const LinkComponent = (

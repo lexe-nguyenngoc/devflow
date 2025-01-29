@@ -21,7 +21,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 import ROUTES from "@/constants/routes";
 
 interface AuthFormProps<T extends FieldValues> {
@@ -70,7 +69,7 @@ const AuthForm = <T extends FieldValues>({
                   <Input
                     type={field.name === "password" ? "password" : "text"}
                     placeholder="Your username"
-                    className="paragraph-regular background-light900_dark300 lighter-border-2 text-dark300_light700 no-focus min-h-12 rounded-1.5 border"
+                    className="paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 no-focus min-h-12 rounded-1.5 border"
                     {...field}
                   />
                 </FormControl>

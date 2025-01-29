@@ -55,7 +55,9 @@ export const AskQuestionSchema = z.object({
     .string()
     .min(5, { message: "Title is required." })
     .max(100, { message: "Title cannot exceed 100 characters." }),
-  content: z.string().min(1, { message: "Body is required." }),
+  content: z
+    .string()
+    .min(20, { message: "The content must be at least 20 characters." }),
   tags: z
     .array(
       z
@@ -64,5 +66,5 @@ export const AskQuestionSchema = z.object({
         .max(30, { message: "Tag cannot exceed 30 characters." }),
     )
     .min(1, { message: "At least one tag is required." })
-    .max(3, { message: "Cannot add more than 3 tags." }),
+    .max(5, { message: "Cannot add more than 5 tags." }),
 });

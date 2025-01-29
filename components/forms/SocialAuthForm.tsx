@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
-
-import { toast } from "@/hooks/use-toast";
+import React from "react";
 
 import ROUTES from "@/constants/routes";
+import { toast } from "@/hooks/use-toast";
 
 import { Button } from "../ui/button";
 
@@ -45,7 +44,7 @@ const SocialAuthForm = () => {
       <Button className={buttonClass} onClick={() => handleSignIn("google")}>
         <Image
           src="/icons/google.svg"
-          alt="Gopgle Logo"
+          alt="Google Logo"
           width={20}
           height={20}
           className="mr-2.5 object-contain"

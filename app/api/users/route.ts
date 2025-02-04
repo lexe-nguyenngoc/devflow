@@ -23,7 +23,6 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const validatedData = UserSchema.safeParse(body);
-    console.log(validatedData);
 
     if (!validatedData.success) {
       throw new ValidationError(validatedData.error.flatten().fieldErrors);

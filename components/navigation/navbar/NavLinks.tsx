@@ -1,21 +1,21 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-import { sidebarLinks } from "@/constants";
-import Link from "next/link";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { SheetClose } from "@/components/ui/sheet";
+import { sidebarLinks } from "@/constants";
+import { cn } from "@/lib/utils";
 
 interface NavLinkProps {
   isMobileNav?: boolean;
+  userId?: string;
 }
 
-const NavLinks = ({ isMobileNav = false }: NavLinkProps) => {
+const NavLinks = ({ isMobileNav = false, userId }: NavLinkProps) => {
   const pathname = usePathname();
-  const userId = 1;
 
   return (
     <>
@@ -37,7 +37,7 @@ const NavLinks = ({ isMobileNav = false }: NavLinkProps) => {
               isActive
                 ? "primary-gradient rounded-lg text-light-900"
                 : "text-dark300_light900",
-              "flex items-center justify-start gap-4 bg-transparent p-4"
+              "flex items-center justify-start gap-4 bg-transparent p-4",
             )}
           >
             <Image
@@ -50,7 +50,7 @@ const NavLinks = ({ isMobileNav = false }: NavLinkProps) => {
             <p
               className={cn(
                 isActive ? "base-bold" : "base-medium",
-                !isMobileNav && "max-lg:hidden"
+                !isMobileNav && "max-lg:hidden",
               )}
             >
               {item.label}

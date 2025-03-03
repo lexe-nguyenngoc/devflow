@@ -39,8 +39,6 @@ export async function POST(request: Request) {
       session,
     );
 
-    console.log({ existingUser });
-
     await session.commitTransaction();
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
@@ -104,7 +102,6 @@ const findOrCreateAccount = async (
   },
   session: mongoose.ClientSession,
 ) => {
-  console.log({ accountData });
   const { userId, name, image, provider, providerAccountId } = accountData;
   const existingAccount = await Account.findOne({
     userId,

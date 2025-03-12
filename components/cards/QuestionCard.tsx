@@ -41,8 +41,9 @@ const QuestionCard = ({
           value={author.name}
           title={`• asked ${getTimeStamp(createdAt)}`}
           href={ROUTES.PROFILE(author._id)}
-          textStyle="body-medium text-dark400_light700"
+          textStyles="body-medium text-dark400_light700"
           isAuthor
+          titleStyles="max-sm:hidden"
         />
 
         <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
@@ -51,21 +52,21 @@ const QuestionCard = ({
             alt="like"
             value={upvote}
             title=" Vote"
-            textStyle="small-medium text-dark400_light800"
+            textStyles="small-medium text-dark400_light800"
           />
           <Metric
             imgUrl="/icons/message.svg"
             alt="answer"
             value={answers}
             title=" Answer"
-            textStyle="small-medium text-dark400_light800"
+            textStyles="small-medium text-dark400_light800"
           />
           <Metric
             imgUrl="/icons/eye.svg"
             alt="views"
             value={views}
             title=" Views"
-            textStyle="small-medium text-dark400_light800"
+            textStyles="small-medium text-dark400_light800"
           />
         </div>
       </div>

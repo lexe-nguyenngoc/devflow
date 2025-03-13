@@ -101,7 +101,7 @@ const AuthForm = <T extends FieldValues>({
         <Button
           type="submit"
           disabled={form.formState.isSubmitting}
-          className="primary-gradient paragraph-medium max-h-12 w-full rounded-2 px-4 py-3 font-inter !text-light-900"
+          className="primary-gradient paragraph-medium max-h-12 w-full rounded-2 px-4 py-3 font-inter text-light-900!"
         >
           {form.formState.isSubmitting ? buttonText + "..." : buttonText}
         </Button>

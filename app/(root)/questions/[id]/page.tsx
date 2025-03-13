@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { after } from "next/server";
 import React from "react";
 
 import TagCard from "@/components/cards/TagCard";
@@ -13,7 +14,7 @@ import { formatNumber, getTimeStamp } from "@/lib/utils";
 const QuestionDetails = async ({ params }: RouteParams) => {
   const { id } = await params;
 
-  incrementViews({ questionId: id });
+  after(incrementViews({ questionId: id }));
 
   const { success, data: question } = await getQuestion({ questionId: id });
 
@@ -48,7 +49,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
         </h2>
       </div>
 
-      <div className="mb-8 mt-5 flex flex-wrap gap-4">
+      <div className="mt-5 mb-8 flex flex-wrap gap-4">
         <Metric
           imgUrl="/icons/clock.svg"
           alt="clock icon"

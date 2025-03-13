@@ -91,7 +91,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
 
   const handleCreateQuestion = (data: z.infer<typeof AskQuestionSchema>) => {
     startTransaction(async () => {
-      const result: ActionResponse<Question> =
+      const result =
         isEdit && question
           ? await editQuestion({ questionId: question._id, ...data })
           : await createQuestion(data);
@@ -102,7 +102,8 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
           description: `Question ${isEdit ? "updated" : "created"} successfully`,
         });
 
-        if (result.data) router.push(ROUTES.QUESTION(result.data?._id));
+        if (result.data)
+          router.push(ROUTES.QUESTION(result.data._id as string));
         return;
       }
 
@@ -135,7 +136,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
                   {...field}
                 />
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
+              <FormDescription className="body-regular text-light-500 mt-2.5">
                 Be specific and imagine you’re asking a question to another
                 person.
               </FormDescription>
@@ -159,7 +160,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
                   fieldChange={field.onChange}
                 />
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
+              <FormDescription className="body-regular text-light-500 mt-2.5">
                 Introduce the problem and expand on what you put in the title.
                 Minimum 20 characters.
               </FormDescription>
@@ -200,7 +201,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
                   )}
                 </div>
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
+              <FormDescription className="body-regular text-light-500 mt-2.5">
                 Add up to 5 tags to describe what your question is about. Start
                 typing to see suggestions.
               </FormDescription>
@@ -213,7 +214,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
           <Button
             type="submit"
             disabled={isPending}
-            className="primary-gradient w-fit text-light-900!"
+            className="primary-gradient text-light-900! w-fit"
           >
             {isPending ? (
               <>

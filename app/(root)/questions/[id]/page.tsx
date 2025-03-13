@@ -13,14 +13,9 @@ import { formatNumber, getTimeStamp } from "@/lib/utils";
 const QuestionDetails = async ({ params }: RouteParams) => {
   const { id } = await params;
 
-  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-  const [_, { success, data: question }] = await Promise.all([
-    incrementViews({ questionId: id }),
-    getQuestion({ questionId: id }),
-  ]);
-  // await incrementViews({ questionId: id });
+  incrementViews({ questionId: id });
 
-  // const { success, data: question } = await getQuestion({ questionId: id });
+  const { success, data: question } = await getQuestion({ questionId: id });
 
   if (!success || !question) return redirect("/404");
 

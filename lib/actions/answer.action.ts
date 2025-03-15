@@ -97,7 +97,14 @@ export async function getAnswers(
 
     const isNext = totalAnswers > skip + answers.length;
 
-    return { success: true, data: { answers, isNext, totalAnswers } };
+    return {
+      success: true,
+      data: {
+        answers: JSON.parse(JSON.stringify(answers)),
+        isNext,
+        totalAnswers,
+      },
+    };
   } catch (error) {
     return handleError(error) as unknown as ErrorResponse;
   }

@@ -336,6 +336,10 @@
   @apply bg-light-800! text-light-500! data-[state=active]:bg-primary-100! data-[state=active]:text-primary-500! dark:bg-dark-400! dark:data-[state=active]:bg-dark-300! min-h-full!;
 }
 
+@utility hash-span {
+  @apply mt-[-140px] block pb-[140px];
+}
+
 @layer utilities {
   body {
     font-family: "Inter", sans-serif;
@@ -380,12 +384,6 @@
   .active-theme {
     filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(0deg)
       brightness(104%) contrast(106%) !important;
-  }
-
-  .hash-span {
-    margin-top: -140px;
-    padding-bottom: 140px;
-    display: block;
   }
 
   .mdxeditor-toolbar {

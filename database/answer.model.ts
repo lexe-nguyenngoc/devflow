@@ -14,8 +14,8 @@ const AnswerSchema = new Schema<IAnswer>(
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     question: { type: Schema.Types.ObjectId, ref: "Question", required: true },
     content: { type: String, required: true },
-    upvote: { type: Number, required: true },
-    downvote: { type: Number, required: true },
+    upvote: { type: Number, default: 0 },
+    downvote: { type: Number, default: 0 },
   },
   { timestamps: true },
 );

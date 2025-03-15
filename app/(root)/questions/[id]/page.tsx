@@ -18,7 +18,6 @@ const QuestionDetails = async ({ params }: RouteParams) => {
   after(incrementViews({ questionId: id }));
 
   const { success, data: question } = await getQuestion({ questionId: id });
-
   if (!success || !question) return redirect("/404");
 
   const { title, author, createdAt, answers, views, tags, content } = question;
@@ -83,7 +82,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
       </div>
 
       <section className="my-5">
-        <AnswerForm />
+        <AnswerForm questionId={question._id} />
       </section>
     </>
   );

@@ -65,7 +65,8 @@ export async function getAnswers(
   }
 
   const { questionId, page = 1, pageSize = 10, filter } = params;
-  const skip = (Number(page) - 1) * pageSize;
+
+  const skip = (Number(page) - 1) * Number(pageSize);
   const limit = pageSize;
 
   let sortCriteria = {};

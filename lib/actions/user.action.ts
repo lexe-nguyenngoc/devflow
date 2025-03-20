@@ -7,6 +7,7 @@ import { Answer, Question, User } from "@/database";
 import action from "../handlers/action";
 import handleError from "../handlers/error";
 import {
+  GetUserAnswersSchema,
   GetUserQuestionsSchema,
   GetUserSchema,
   PaginatedSearchParamsSchema,
@@ -145,6 +146,51 @@ export async function getUserQuestions(
       success: true,
       data: {
         questions: JSON.parse(JSON.stringify(questions)),
+        isNext,
+      },
+    };
+  } catch (error) {
+    return handleError(error) as unknown as ErrorResponse;
+  }
+}
+
+export async function getUserAnswers(
+  params: GetUserAnswersParams,
+): Promise<ActionResponse<{ answers: Answer[]; isNext: boolean }>> {
+  const validationResult = await action({
+    params,
+    schema: GetUserAnswersSchema,
+    authorize: true,
+  });
+
+  if (validationResult instanceof Error) {
+    return handleError(validationResult) as unknown as ErrorResponse;
+  }
+
+  const { userId, page = 1, pageSize = 10 } = params;
+
+  const skip = (page - 1) * pageSize;
+  const limit = pageSize;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) throw new Error("User not found");
+
+    const [totalAnswers, answers] = await Promise.all([
+      Answer.countDocuments({ author: userId }),
+      Answer.find({ author: userId })
+        .populate("author", "_id name image")
+        .skip(skip)
+        .limit(limit),
+    ]);
+
+    const isNext = totalAnswers > skip + answers.length;
+
+    return {
+      success: true,
+      data: {
+        answers: JSON.parse(JSON.stringify(answers)),
         isNext,
       },
     };

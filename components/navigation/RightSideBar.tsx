@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import ROUTES from "@/constants/routes";
+import { getHotQuestions } from "@/lib/actions/question.action";
+import { getTopTags } from "@/lib/actions/tag.action";
 
 import TagCard from "../cards/TagCard";
-import { getHotQuestions } from "@/lib/actions/question.action";
 import DataRenderer from "../DataRenderer";
-import { getTopTags } from "@/lib/actions/tag.action";
 
 const RightSideBar = async () => {
   const [
